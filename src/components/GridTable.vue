@@ -4,6 +4,7 @@
   <el-table
     :data="tableData"
     @selection-change="handleSelectionChange"
+    align="center"
     show-overflow-tooltip
     stripe
     border>
@@ -29,7 +30,9 @@
       </el-table-column>
     </template>
     <!-- 操作 -->
-    <el-table-column v-if="operations.length" label="Action">
+    <el-table-column
+      v-if="operations.length"
+      label="Action">
       <template slot-scope="scope">
         <template v-for="(operation) in operations">
           <el-button v-if="operation.name === 'placeholder'" size="mini" :key="scope.row.id" style="display: none"> </el-button>
