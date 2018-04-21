@@ -29,7 +29,7 @@
       </el-table-column>
     </template>
     <!-- 操作 -->
-    <el-table-column v-if="operations.length" label="操作">
+    <el-table-column v-if="operations.length" label="Action">
       <template slot-scope="scope">
         <template v-for="(operation, index) in operations">
           <el-button v-if="operation.name === 'placeholder'" size="mini" :key="scope.row.id" style="display: none"> </el-button>
@@ -50,8 +50,7 @@
 
 <script>
 export default {
-
-  name: 'Table',
+  name: "Table",
 
   props: {
     // 是否显示可选择
@@ -79,30 +78,30 @@ export default {
       default: []
     }
   },
-  data () {
+  data() {
     return {
-      loading: true,
-    }
+      loading: true
+    };
   },
   methods: {
     /**
      * 选中事件
      */
-    handleSelectionChange (selects) {
-      this.$emit('select', selects)
+    handleSelectionChange(selects) {
+      this.$emit("select", selects);
     },
 
     /**
      * 点击操作列事件
      */
-    handleClickButton (index, row, eventType) {
-      this.$emit(eventType, {index, row, ref: this});
+    handleClickButton(index, row, eventType) {
+      this.$emit(eventType, { index, row, ref: this });
     }
   }
-}
+};
 </script>
 <style lang="less" scoped>
-  /* .el-table__body-wrapper {
+/* .el-table__body-wrapper {
     overflow: hidden;
   } */
 </style>

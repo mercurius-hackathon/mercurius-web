@@ -57,13 +57,13 @@ export default {
       },
       legend: {
         data: ["邮件营销", "联盟广告", "视频广告", "直接访问", "搜索引擎"],
-        bottom: '10%'
+        bottom: "10%"
       },
       grid: {
         left: 0,
         right: 10,
-        bottom: '3%',
-        top: '10%',
+        bottom: "3%",
+        top: "10%",
         containLabel: true
       },
       xAxis: {
@@ -85,7 +85,7 @@ export default {
         },
         axisTick: {
           show: false
-        },
+        }
       },
       series: [
         {
