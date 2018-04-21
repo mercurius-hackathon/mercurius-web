@@ -1,53 +1,108 @@
 <template>
+    <!-- v-loading="loading" -->
+    <!-- TODO: add v-loading -->
   <el-table
     :data="tableData"
-    cell-class-name="table-cell"
-    style="width: 100%">
-    <el-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址">
+    @selection-change="handleSelectionChange"
+    highlight-current-row
+    stripe
+    border>
+    <!-- 可选择 -->
+    <el-table-column v-if="selection" type="selection" min-width="15px"></el-table-column>
+    <!-- 列 -->
+    <template v-for="(column,index) in columns">
+      <el-table-column
+        v-if="column.filter"
+        :label="column.label"
+        :key="column.dataIndex"
+        :prop="column.dataIndex"
+        :min-width="column.width"
+        :filters="column.filter ? column.filter.filters : null"
+        :filter-method="column.filter ? column.filter.method : null">
+      </el-table-column>
+      <el-table-column
+        v-else
+        :label="column.label"
+        :key="column.dataIndex"
+        :prop="column.dataIndex"
+        :min-width="column.width">
+      </el-table-column>
+    </template>
+    <!-- 操作 -->
+    <el-table-column v-if="operations.length" label="操作">
+      <template slot-scope="scope">
+        <template v-for="(operation, index) in operations">
+          <el-button v-if="operation.name === 'placeholder'" size="mini" :key="scope.row.id" style="display: none"> </el-button>
+          <el-button
+            v-if="!operation.name"
+            v-has="operation.perms"
+            size="mini"
+            :type="operation.type"
+            :key="scope.row.id"
+            @click="handleClickButton(scope.$index, scope.row, operation.eventType)">
+            {{operation.label}}
+          </el-button>
+        </template>
+      </template>
     </el-table-column>
   </el-table>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
-      }
+export default {
+
+  name: 'Table',
+
+  props: {
+    // 是否显示可选择
+    selection: {
+      type: Boolean, // String, Number, Boolean, Function, Object, Array
+      required: true,
+      default: true
+    },
+    // 表格列
+    columns: {
+      type: Array,
+      required: true,
+      default: []
+    },
+    // 操作
+    operations: {
+      type: Array,
+      required: false,
+      default: []
+    },
+    // 表格的数据源
+    tableData: {
+      type: Array,
+      required: false,
+      default: []
+    }
+  },
+  data () {
+    return {
+      loading: true,
+    }
+  },
+  methods: {
+    /**
+     * 选中事件
+     */
+    handleSelectionChange (selects) {
+      this.$emit('select', selects)
+    },
+
+    /**
+     * 点击操作列事件
+     */
+    handleClickButton (index, row, eventType) {
+      this.$emit(eventType, {index, row, ref: this});
     }
   }
+}
 </script>
-
 <style lang="less" scoped>
-  .table-cell {
-    height: 100px;
-  }
+  /* .el-table__body-wrapper {
+    overflow: hidden;
+  } */
 </style>

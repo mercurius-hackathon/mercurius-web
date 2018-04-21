@@ -60,8 +60,8 @@ export default {
         bottom: '10%'
       },
       grid: {
-        left: '1%',
-        right: '4%',
+        left: 0,
+        right: 10,
         bottom: '3%',
         top: '10%',
         containLabel: true

@@ -108,8 +108,8 @@ const commonOptions = {
     borderWidth: 0,
     top: 12,
     bottom: 10,
-    left: 10,
-    right: 30,
+    left: 0,
+    right: 10,
     containLabel: true
   },
   /** tooltip配置 */
