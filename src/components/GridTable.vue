@@ -17,15 +17,19 @@
         :label="column.label"
         :key="column.dataIndex"
         :prop="column.dataIndex"
+        :sortable="column.sortable"
         :min-width="column.width"
+        show-overflow-tooltip
         :filters="column.filter ? column.filter.filters : null"
         :filter-method="column.filter ? column.filter.method : null">
       </el-table-column>
       <el-table-column
         v-else
+        show-overflow-tooltip
         :label="column.label"
         :key="column.dataIndex"
         :prop="column.dataIndex"
+        :sortable="column.sortable"
         :min-width="column.width">
       </el-table-column>
     </template>

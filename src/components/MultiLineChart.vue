@@ -20,6 +20,17 @@ for (var i = 1; i < 2000; i++) {
   data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
 }
 
+// 折线图数据结构
+/*
+  JSON: [
+    {
+      date: 时间
+      data: 数据点的值
+    }
+    ...
+  ]
+ */
+
 export default {
   name: "AreaChart",
   created() {

@@ -7,7 +7,11 @@
       <router-link to="/detail">Robots detail</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <transition name="myfade" mode="out-in">
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
@@ -28,5 +32,12 @@
       color: #42b983;
     }
   }
+}
+
+.myfade-enter-active, .myfade-leave-active {
+  transition: opacity 0.2s;
+}
+.myfade-enter, .myfade-leave-active {
+  opacity: 0;
 }
 </style>
