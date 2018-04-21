@@ -12,7 +12,7 @@ import echarts from 'echarts/lib/echarts'
 // mock data
 var date = []
 var data = []
-for (var i = 1; i < 12; i++) {
+for (var i = 1; i < 60; i++) {
   date.push(i + 11)
   data.push(Math.round((Math.random()) * 10 + 10))
 }
@@ -34,7 +34,8 @@ const lightThemeOptions = {
     },
     splitArea: {
       // 区域分割颜色
-      show: true,
+      // NOTE: 因为数据太密集，所以不显示区域分割的颜色
+      show: false,
       areaStyle: {
         color: ['#fff', '#F7F7F7'],
         opacity: 0.5
@@ -154,6 +155,7 @@ export default {
   name: 'AreaChart',
   created () {
     // 监听窗口大小变化
+    this.chartOptions = this.$_.merge(commonOptions, lightThemeOptions)
     window.addEventListener('resize', () => {
       this.$refs.chart.resize()
     }, false)
@@ -165,7 +167,7 @@ export default {
   },
   data: function () {
     return {
-      // 图表主题
+      // 图表配置
       chartOptions: null
     }
   },
