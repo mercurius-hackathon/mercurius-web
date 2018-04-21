@@ -43,8 +43,6 @@ const TABLECONFIG = {
   operations: [
     {
       label: "view",
-      // eventType: "delete",
-      // perms: "system:sysDept:remove",
       type: "success"
     }
   ]

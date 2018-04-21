@@ -10,7 +10,7 @@
     <!-- 可选择 -->
     <el-table-column v-if="selection" type="selection" min-width="15px"></el-table-column>
     <!-- 列 -->
-    <template v-for="(column,index) in columns">
+    <template v-for="(column) in columns">
       <el-table-column
         v-if="column.filter"
         :label="column.label"
@@ -31,7 +31,7 @@
     <!-- 操作 -->
     <el-table-column v-if="operations.length" label="Action">
       <template slot-scope="scope">
-        <template v-for="(operation, index) in operations">
+        <template v-for="(operation) in operations">
           <el-button v-if="operation.name === 'placeholder'" size="mini" :key="scope.row.id" style="display: none"> </el-button>
           <el-button
             v-if="!operation.name"
@@ -63,19 +63,25 @@ export default {
     columns: {
       type: Array,
       required: true,
-      default: []
+      default: function() {
+        return [];
+      }
     },
     // 操作
     operations: {
       type: Array,
       required: false,
-      default: []
+      default: function() {
+        return [];
+      }
     },
     // 表格的数据源
     tableData: {
       type: Array,
       required: false,
-      default: []
+      default: function() {
+        return [];
+      }
     }
   },
   data() {
