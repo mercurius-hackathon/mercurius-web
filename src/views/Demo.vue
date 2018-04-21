@@ -10,10 +10,6 @@
       <area-chart class="echarts" ref="priceChart"></area-chart>
     </div>
 
-    <div class="element">
-      <el-button>are you ok?</el-button>
-    </div>
-
     <div class="mutillinechart">
       <multi-line-chart class="echarts"></multi-line-chart>
     </div>
