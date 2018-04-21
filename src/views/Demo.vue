@@ -5,18 +5,25 @@
 */
 <template>
   <div class="demo">
+
     <div class="areachart">
-      <!-- 数据 -->
-      <area-chart class="echarts-price" ref="priceChart"></area-chart>
+      <area-chart class="echarts" ref="priceChart"></area-chart>
     </div>
+
     <div class="element">
       <el-button>are you ok?</el-button>
     </div>
+
+    <div class="mutillinechart">
+      <multi-line-chart class="echarts"></multi-line-chart>
+    </div>
+
   </div>
 </template>
 
 <script>
 import AreaChart from "../components/AreaChart";
+import MultiLineChart from "../components/MultiLineChart";
 
 export default {
   name: "Demo",
@@ -28,7 +35,8 @@ export default {
   methods: {},
   watch: {},
   components: {
-    AreaChart
+    AreaChart,
+    MultiLineChart
   }
 };
 </script>
@@ -39,8 +47,7 @@ export default {
 }
 
 // Echarts样式
-.echarts-price,
-.echarts-treemap {
+.echarts {
   width: 100%;
 }
 </style>

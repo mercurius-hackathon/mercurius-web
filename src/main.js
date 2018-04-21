@@ -10,6 +10,7 @@ import "vue2-animate/dist/vue2-animate.min.css";
 import ECharts from "vue-echarts/components/ECharts.vue";
 // 手动引入 ECharts 各模块来减小打包体积
 import "echarts/lib/component/tooltip";
+import "echarts/lib/component/legend";
 import "echarts/lib/chart/line";
 import "echarts/lib/component/dataZoom";
 // Element
