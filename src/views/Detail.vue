@@ -127,6 +127,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import url('../themes.less');
 .areachart {
   width: 100%;
 }
@@ -154,25 +155,25 @@ export default {
       height: 215px;
     }
     .time {
-      color: #888;
+      color: #e0e0e0;
       margin-right: 10px;
     }
   }
   // success status
   .level1 {
     .message {
-      color: #69aa46;
+      color: @light-green;
     }
   }
   // error status
   .level2 {
     .message {
-      color: #b74635;
+      color: @orange;
     }
   }
   // common status
   .level0 {
-    color: #000;
+    color: @light-blue;
   }
 }
 .row2 {

@@ -3,7 +3,6 @@
     <div id="nav">
       <router-link to="/">Live Robots</router-link> |
       <router-link to="/sandbox">Sandbox</router-link> |
-      <router-link to="/demo">Demo</router-link> |
       <router-link to="/detail">Robots detail</router-link> |
       <router-link to="/about">About</router-link>
     </div>
@@ -16,9 +15,10 @@
 </template>
 
 <style lang="less">
+@import './themes.less';
 html {
-  min-height: 100vh;
-  background-size: 100% 100%;
+  min-height: 130vh;
+  background-size: cover;
   background-position: center;
   background-image: url('./assets/background.jpeg');
   background-repeat: no-repeat;
@@ -36,7 +36,7 @@ html {
     font-weight: bold;
     color: #e0e0e0;
     &.router-link-exact-active {
-      color: #42b983;
+      color: @dark-green;
     }
   }
 }
@@ -46,5 +46,23 @@ html {
 }
 .myfade-enter, .myfade-leave-active {
   opacity: 0;
+}
+// black theme
+.el-tabs--border-card,
+.el-tabs--border-card>.el-tabs__header {
+  background-color: rgba(255, 255, 255, 0.07);
+  border: none;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover {
+  color: #e0e0e0;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+  color: #fff;
+}
+.el-tabs--border-card > .el-tabs__header .el-tabs__item {
+  border: none;
 }
 </style>
