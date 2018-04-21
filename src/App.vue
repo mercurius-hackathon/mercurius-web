@@ -17,7 +17,7 @@
 <style lang="less">
 @import './themes.less';
 html {
-  min-height: 130vh;
+  min-height: 120vh;
   background-size: cover;
   background-position: center;
   background-image: url('./assets/background.jpeg');

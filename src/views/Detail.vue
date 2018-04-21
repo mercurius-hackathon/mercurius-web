@@ -25,13 +25,34 @@
       </el-row>
       <!-- row 2 -->
       <el-row class="row2">
-        <el-col :span="12" class="el-col">
+        <el-col :span="14" class="el-col">
           <el-tabs type="border-card" class="test">
-            <el-tab-pane label="BlackTest">BlackTest</el-tab-pane>
+            <el-tab-pane label="Performance">
+              <!-- blacktest module -->
+              <div class="blacktest-module">
+                <grid-table
+                  :selection="TABLECONFIG.selection"
+                  :columns="TABLECONFIG.columns"
+                  :operations="TABLECONFIG.operations"
+                  :tableData="tableData"
+                ></grid-table>
+              </div>
+            </el-tab-pane>
+
+            <el-tab-pane label="Up/Down">
+                <grid-table
+                  :selection="TABLECONFIG2.selection"
+                  :columns="TABLECONFIG2.columns"
+                  :operations="TABLECONFIG2.operations"
+                  :tableData="tableData"
+                ></grid-table>
+            </el-tab-pane>
+
+            </el-tabs>
           </el-tabs>
         </el-col>
 
-        <el-col :span="12" class="el-col">
+        <el-col :span="10" class="el-col">
           <el-tabs type="border-card">
             <el-tab-pane label="Logs">
               <div class="log-contents">
@@ -78,33 +99,52 @@ import MultiLineChart from "../components/MultiLineChart";
 import GridTable from "../components/GridTable";
 const TABLECONFIG = {
   selection: false,
-  columns: [
-    {
-      label: "Date",
-      width: "40px",
-      dataIndex: "date"
-    },
-    {
-      label: "Platform",
-      dataIndex: "platform"
-    },
-    {
-      label: "Type",
-      dataIndex: "type"
-    },
-    {
-      label: "Price",
-      dataIndex: "price"
-    },
-    {
-      label: "Amount",
-      dataIndex: "amount"
-    },
-    {
-      label: "Message",
-      dataIndex: "message"
-    }
-  ]
+  columns: [{
+    label: "Algorithm",
+    dataIndex: "alg"
+  }, {
+    label: "average",
+    dataIndex: "average"
+  }, {
+    label: "portfolio value",
+    dataIndex: "portfolio_value"
+  }, {
+    label: "max drawdown",
+    dataIndex: "max_drawdown"
+  }, {
+    label: "sharpe ratio",
+    dataIndex: "sharpe_ratio",
+  }, {
+    label: "sortino ratio",
+    dataIndex: "sortino_ratio",
+  }],
+  operations: []
+}
+const TABLECONFIG2 = {
+  selection: false,
+  columns: [{
+    label: "Algorithm",
+    dataIndex: "alg"
+  }, {
+    label: "negative day",
+    dataIndex: "negative_day"
+  }, {
+    label: "negative periods",
+    dataIndex: "negative_periods"
+  }, {
+    label: "negative week",
+    dataIndex: "negative_week"
+  }, {
+    label: "positive periods",
+    dataIndex: "positive_periods",
+  }, {
+    label: "postive day",
+    dataIndex: "postive_day",
+  }, {
+    label: "postive week",
+    dataIndex: "postive_week"
+  }],
+  operations: []
 }
 
 export default {
@@ -112,7 +152,8 @@ export default {
   computed: {},
   data() {
     return {
-      TABLECONFIG
+      TABLECONFIG,
+      TABLECONFIG2
     };
   },
   created() {},
