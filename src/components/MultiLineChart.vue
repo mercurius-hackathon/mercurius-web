@@ -4,7 +4,7 @@
 * @Created: 2018-04-11 11:13
 */
 <template>
-  <chart :options="chartOptions" ref="chart"></chart>
+  <chart :options="chartOptions" ref="chart" auto-resize></chart>
 </template>
 
 <script>
@@ -73,6 +73,11 @@ export default {
       },
       yAxis: {
         type: "value",
+        splitLine: {
+          lineStyle: {
+            color: "#eee"
+          }
+        },
         axisLabel: {
           inside: true,
           formatter: "{value}",
@@ -116,18 +121,8 @@ export default {
         }
       ]
     };
-    window.addEventListener(
-      "resize",
-      () => {
-        this.$refs.chart.resize();
-      },
-      false
-    );
   },
   methods: {
-    resize: function() {
-      this.$refs.chart.resize();
-    }
   },
   data: function() {
     return {

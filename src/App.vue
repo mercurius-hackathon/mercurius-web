@@ -2,8 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Live Robots</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/demo">Demo</router-link>
+      <router-link to="/sandbox">Sandbox</router-link> |
+      <router-link to="/demo">Demo</router-link> |
+      <router-link to="/detail">Robots detail</router-link> |
+      <router-link to="/about">About</router-link>
     </div>
     <router-view/>
   </div>

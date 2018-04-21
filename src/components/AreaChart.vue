@@ -4,7 +4,7 @@
 * @Created: 2018-04-11 11:13
 */
 <template>
-  <chart :options="chartOptions" ref="chart"></chart>
+  <chart :options="chartOptions" ref="chart" auto-resize></chart>
 </template>
 
 <script>
@@ -191,18 +191,8 @@ export default {
   created() {
     // 监听窗口大小变化
     this.chartOptions = this.$_.merge(commonOptions, lightThemeOptions);
-    window.addEventListener(
-      "resize",
-      () => {
-        this.$refs.chart.resize();
-      },
-      false
-    );
   },
   methods: {
-    resize: function() {
-      this.$refs.chart.resize();
-    }
   },
   data: function() {
     return {

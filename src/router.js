@@ -9,6 +9,14 @@ const Demo = resolve => {
     resolve(module);
   });
 };
+
+// 异步模块
+const Detail = resolve => {
+  import("./views/Detail.vue").then(module => {
+    resolve(module);
+  });
+};
+
 // import Demo from "./views/Demo.vue";
 
 Vue.use(Router);
@@ -19,6 +27,11 @@ export default new Router({
       path: "/",
       name: "live",
       component: Live
+    },
+    {
+      path: "/detail",
+      name: "detail",
+      component: Detail
     },
     {
       path: "/about",
