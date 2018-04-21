@@ -7,7 +7,7 @@
   <div class="demo">
 
     <div class="areachart">
-      <area-chart class="echarts" ref="priceChart"></area-chart>
+      <area-chart class="echarts"></area-chart>
     </div>
 
     <div class="mutillinechart">
@@ -33,8 +33,8 @@
 <script>
 import AreaChart from "../components/AreaChart";
 import MultiLineChart from "../components/MultiLineChart";
-import Candlestick from "../components/Candlestick";
 import GridTable from "../components/GridTable";
+import Candlestick from "../components/Candlestick";
 
 const TABLECONFIG = {
   selection: true,

@@ -5,6 +5,43 @@
 */
 <template>
     <div>
+      <div class="select-params">
+        <!-- market -->
+        <el-select v-model="market" placeholder="market" style="width: 120px;">
+          <el-option label="Poloniex" value="poloniex"></el-option>
+          <el-option label="Binance" value="binance"></el-option>
+          <el-option label="GDAX" value="gdax"></el-option>
+          <el-option label="Huobi" value="huobi"></el-option>
+        </el-select>
+        <!-- instrument -->
+        <el-select v-model="instrument" placeholder="instrument" style="width: 120px; ">
+          <el-option label="ETH/BTC" value="ETH/BTC"></el-option>
+          <el-option label="XMR/BTC" value="XMR/BTC"></el-option>
+          <el-option label="STR/BTC" value="STR/BTC"></el-option>
+          <el-option label="OMG/BTC" value="OMG/BTC"></el-option>
+          <el-option label="LSK/BTC" value="LSK/BTC"></el-option>
+        </el-select>
+        <!-- period -->
+        <el-select v-model="period" placeholder="period" style="width: 120px;">
+          <el-option label="1m" value="1m"></el-option>
+          <el-option label="5m" value="5m"></el-option>
+          <el-option label="15m" value="15m"></el-option>
+          <el-option label="30m" value="30m"></el-option>
+          <el-option label="1h" value="1h"></el-option>
+          <el-option label="2h" value="2h"></el-option>
+          <el-option label="4h" value="4h"></el-option>
+          <el-option label="8h" value="8h"></el-option>
+          <el-option label="1d" value="1d"></el-option>
+        </el-select>
+        <!-- time -->
+        <el-date-picker
+          v-model="times"
+          type="datetimerange"
+          range-separator="To"
+          start-placeholder="start at"
+          end-placeholder="end at">
+        </el-date-picker>
+      </div>
       <!-- row 1 -->
       <el-row>
         <el-col :span="24">
@@ -17,7 +54,8 @@
             </el-tab-pane>
             <el-tab-pane label="Strategy chart">
               <div class="mutillinechart">
-                <multi-line-chart class="echarts"></multi-line-chart>
+                <!-- <multi-line-chart class="echarts"></multi-line-chart> -->
+                <candlestick class="echarts"></candlestick>
               </div>
             </el-tab-pane>
           </el-tabs>
@@ -97,12 +135,11 @@
 import AreaChart from "../components/AreaChart";
 import MultiLineChart from "../components/MultiLineChart";
 import GridTable from "../components/GridTable";
+import Candlestick from "../components/Candlestick";
+import http from "../service";
 const TABLECONFIG = {
   selection: false,
   columns: [{
-    label: "Algorithm",
-    dataIndex: "alg"
-  }, {
     label: "average",
     dataIndex: "average"
   }, {
@@ -123,9 +160,6 @@ const TABLECONFIG = {
 const TABLECONFIG2 = {
   selection: false,
   columns: [{
-    label: "Algorithm",
-    dataIndex: "alg"
-  }, {
     label: "negative day",
     dataIndex: "negative_day"
   }, {
@@ -152,17 +186,29 @@ export default {
   computed: {},
   data() {
     return {
+      market: 'poloniex',
+      instrument: 'ETH/BTC',
+      period: '1m',
+      times: [new Date() - 3600 * 1000 * 24, new Date()],
+      start_time: null,
+      end_time: null,
       TABLECONFIG,
       TABLECONFIG2
     };
   },
-  created() {},
+  created() {
+    // TODO: confirm why it donen't work
+    http.get('/uploadAlgo').then(res => {
+      console.log('res', res);
+    });
+  },
   methods: {},
   watch: {},
   components: {
     AreaChart,
     MultiLineChart,
-    GridTable
+    GridTable,
+    Candlestick
   }
 };
 </script>
@@ -227,5 +273,11 @@ export default {
 
 .el-col {
   padding: 10px;
+}
+.select-params {
+  text-align: left;
+  &>* {
+    margin: 10px 10px;
+  }
 }
 </style>

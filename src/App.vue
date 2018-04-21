@@ -20,6 +20,7 @@ html {
   background-position: center;
   background-image: url('./assets/background.jpeg');
   background-repeat: no-repeat;
+  min-width: 440px;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
