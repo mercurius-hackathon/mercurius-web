@@ -9,6 +9,9 @@
       <!-- 数据 -->
       <area-chart class="echarts-price" ref="priceChart"></area-chart>
     </div>
+    <div class="element">
+      <el-button>are you ok?</el-button>
+    </div>
   </div>
 </template>
 
