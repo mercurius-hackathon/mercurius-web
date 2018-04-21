@@ -19,28 +19,39 @@
       </el-tab-pane>
       <el-tab-pane label="Status">
         <div class="status-wrapper">
-          <pre>
-  时间2018-04-21 17:45:59
-  深度次数:1264139
-  P:13.133
-  M:14.158
-  2.5: P_COUNT: 5 M_COUNT: 3
-  [{"MarginLevel":10,"Amount":1496,"FrozenAmount":88,"Price":611.4285,"Profit":0.531345,"Type":0,"ContractType":"this_week"},{"MarginLevel":10,"Amount":1496,"FrozenAmount":0,"Price":622.1973,"Profit":-0.590996,"Type":1,"ContractType":"quarter"}]
-          </pre>
+          <p> Time: 2018-04-21 17:45:59 </p>
+          <p> DeepTimes:1264139 </p>
+          <p> P: 17.182</p>
+          <p> M: 14.158</p>
+          <p>2.5: P_COUNT: 5 M_COUNT: 3</p>
+          <p>[{"MarginLevel":10,"Amount":2024,"FrozenAmount":0,"Price":606.1285,"Profit":0.478648,"Type":0,"ContractType":"this_week"},{"MarginLevel":10,"Amount":2024,"FrozenAmount":0,"Price":618.7885,"Profit":-0.595328,"Type":1,"ContractType":"quarter"}]</p>
         </div>
       </el-tab-pane>
       <el-tab-pane label="Logs">
-        <grid-table
-          :selection="TABLECONFIG.selection"
-          :columns="TABLECONFIG.columns"
-          :operations="TABLECONFIG.operations"
-          :tableData="tableData"
-        ></grid-table>
+        <div class="log-contents">
+          <div class="log">
+            <div class="scroll-log">
+              <!-- loop content -->
+              <div class="level1">
+                <span class="time">2018-02-28 10:30</span>
+                <span class="message">Profit: 18.1734% (15.9673% over B&H)</span>
+              </div>
+              <div class="level2">
+                <span class="time">2018-02-28 10:30</span>
+                <span class="message">Stop detected.</span>
+              </div>
+              <div class="level0">
+                <span class="time">2018-02-28 10:30</span>
+                <span class="message">Profit: 18.1734% (15.9673% over B&H)</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </el-tab-pane>
     </el-tabs>
 
     <el-tabs type="border-card" class="test">
-      <el-tab-pane label="BlackTest">用户管理</el-tab-pane>
+      <el-tab-pane label="BlackTest">BlackTest</el-tab-pane>
     </el-tabs>
   </div>
 
@@ -87,18 +98,7 @@ export default {
   computed: {},
   data() {
     return {
-      TABLECONFIG,
-      tableData: [{
-        date: "2018-04-21 09:27:50",
-        type: "system",
-        message: 'plus 开仓： [{"Info":{"symbol":"eth_usd","buy_available":1672,"contract_id":201804270020042,"buy_amount":1672,"sell_price_avg":0,"buy_price_avg":609.07433952,"buy_profit_real":0.48161855,"sell_price_cost":0,"buy_price_cost":609.07433952,"create_date":1524211439000,"lever_rate":10,"contract_type":"this_week","sell_amount":0,"sell_profit_real":0,"sell_available":0},"MarginLevel":10,"Amount":1672,"FrozenAmount":0,"Price":609.0744,"Profit":0.481618,"Type":0,"ContractType":"this_week"},{"Info":{"symbol":"eth_usd","buy_available":0,"sell_price_cost":620.92992253,"create_date":1522430527000,"contract_id":201806290020060,"contract_type":"quarter","sell_amount":1672,"buy_price_cost":577.0323238,"lever_rate":10,"buy_amount":0,"buy_profit_real":0,"sell_available":1672,"buy_price_avg":577.0323238,"sell_price_avg":620.92992253,"sell_profit_real":-0.59243793},"MarginLevel":10,"Amount":1672,"FrozenAmount":0,"Price":620.93,"Profit":-0.592437,"Type":1,"ContractType":"quarter"}]'
-      }, {
-        date: "2018-04-21 09:27:50",
-        type: "sell",
-        price: "610.64",
-        amount: "88"
-
-      }]
+      TABLECONFIG
     };
   },
   created() {},
@@ -121,10 +121,45 @@ export default {
 .echarts {
   width: 100%;
 }
-.status-wrapper pre {
+.status-wrapper  {
   text-align: left;
+  margin-top: 0;
 }
 .test {
   margin-top: 40px;
+}
+
+.log-contents {
+  font-size: 12px;
+  position: relative;
+  text-align: left;
+  padding: 5px;
+  .log {
+    height: auto;
+    overflow: scroll;
+    .scroll-log {
+      height: 215px;
+    }
+    .time {
+      color: #888;
+      margin-right: 10px;
+    }
+  }
+  // success status
+  .level1 {
+    .message {
+      color: #69aa46;
+    }
+  }
+  // error status
+  .level2 {
+    .message {
+      color: #b74635;
+    }
+  }
+  // common status
+  .level0 {
+    color: #000;
+  }
 }
 </style>
