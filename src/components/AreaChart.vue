@@ -8,15 +8,25 @@
 </template>
 
 <script>
-import echarts from 'echarts/lib/echarts'
+import echarts from "echarts/lib/echarts";
 // mock data
-var date = []
-var data = []
-for (var i = 1; i < 60; i++) {
-  date.push(i + 11)
-  data.push(Math.round((Math.random()) * 10 + 10))
-}
+// var date = []
+// var data = []
+// for (var i = 1; i < 60; i++) {
+//   date.push(i + 11)
+//   data.push(Math.round((Math.random()) * 10 + 10))
+// }
+var base = +new Date(1968, 9, 3);
+var oneDay = 24 * 3600 * 1000;
+var date = [];
 
+var data = [Math.random() * 300];
+
+for (var i = 1; i < 20000; i++) {
+  var now = new Date((base += oneDay));
+  date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join("/"));
+  data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+}
 
 /** 亮色主题 */
 const lightThemeOptions = {
@@ -24,52 +34,57 @@ const lightThemeOptions = {
     axisPointer: {
       snap: true,
       lineStyle: {
-        color: '#1863a5',
+        color: "#1863a5",
         opacity: 0.5,
         width: 2
       }
     },
     axisLabel: {
-      color: '#343434'
+      color: "#343434"
     },
     splitArea: {
       // 区域分割颜色
       // NOTE: 因为数据太密集，所以不显示区域分割的颜色
       show: false,
       areaStyle: {
-        color: ['#fff', '#F7F7F7'],
+        color: ["#fff", "#F7F7F7"],
         opacity: 0.5
       }
-    },
+    }
   },
   yAxis: {
     splitLine: {
       lineStyle: {
-        color: '#eee'
+        color: "#eee"
       }
     }
   },
-  series: [{
-    itemStyle: {
-      normal: {
-        type: 'solid',
-        color: '#2D73B0',
-        opacity: '0.1'
-      }
-    },
-    areaStyle: {
-      normal: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-          offset: 0,
-          color: 'rgba(25,100,165,0.50)'
-        }, {
-          offset: 1,
-          color: 'rgba(25,100,165,0.00)'
-        }])
+  series: [
+    {
+      itemStyle: {
+        normal: {
+          type: "solid",
+          color: "#2D73B0",
+          opacity: "0.1"
+        }
+      },
+      areaStyle: {
+        normal: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: "rgba(25,100,165,0.50)"
+            },
+            {
+              offset: 1,
+              color: "rgba(25,100,165,0.00)"
+            }
+          ])
+        }
       }
     }
-  }]
-}
+  ]
+};
 
 const commonOptions = {
   /** grid配置 */
@@ -84,24 +99,24 @@ const commonOptions = {
   /** tooltip配置 */
   tooltip: {
     show: true,
-    trigger: 'axis',
-    position: function (pt) {
-      return [pt[0], '10%']
+    trigger: "axis",
+    position: function(pt) {
+      return [pt[0], "10%"];
     },
     axisPointer: {
       animation: false,
-      type: 'cross'
+      type: "cross"
     }
   },
   axisPointer: {
-    link: {xAxisIndex: 'all'},
+    link: { xAxisIndex: "all" },
     label: {
-      backgroundColor: '#777'
+      backgroundColor: "#777"
     }
   },
   /** x轴配置 */
   xAxis: {
-    type: 'category',
+    type: "category",
     boundaryGap: false,
     data: date,
     // 坐标轴刻度相关设置
@@ -114,11 +129,11 @@ const commonOptions = {
     },
     axisLabel: {
       padding: [7, 0, 0, 0]
-    },
+    }
   },
   /** Y轴配置 */
   yAxis: {
-    type: 'value',
+    type: "value",
     splitLine: {
       show: true
     },
@@ -127,54 +142,58 @@ const commonOptions = {
     },
     axisLabel: {
       inside: true,
-      formatter: '${value}',
+      formatter: "${value}",
       margin: 5,
       padding: [0, 0, 12, 0],
       textStyle: {
         // 刻度标签文字的颜色
-        color: '#D5D5D5'
+        color: "#D5D5D5"
       }
     },
     axisTick: {
       show: false
     },
-    boundaryGap: [0, '100%']
+    boundaryGap: [0, "100%"]
   },
   /** 数据 */
-  series: [{
-    name: '模拟数据',
-    type: 'line',
-    smooth: false,
-    symbol: 'none',
-    sampling: 'average',
-    data: data
-  }]
-}
+  series: [
+    {
+      name: "模拟数据",
+      type: "line",
+      smooth: false,
+      symbol: "none",
+      sampling: "average",
+      data: data
+    }
+  ]
+};
 
 export default {
-  name: 'AreaChart',
-  created () {
+  name: "AreaChart",
+  created() {
     // 监听窗口大小变化
-    this.chartOptions = this.$_.merge(commonOptions, lightThemeOptions)
-    window.addEventListener('resize', () => {
-      this.$refs.chart.resize()
-    }, false)
+    this.chartOptions = this.$_.merge(commonOptions, lightThemeOptions);
+    window.addEventListener(
+      "resize",
+      () => {
+        this.$refs.chart.resize();
+      },
+      false
+    );
   },
   methods: {
-    resize: function () {
-      this.$refs.chart.resize()
+    resize: function() {
+      this.$refs.chart.resize();
     }
   },
-  data: function () {
+  data: function() {
     return {
       // 图表配置
       chartOptions: null
-    }
+    };
   },
-  watch: {
-
-  }
-}
+  watch: {}
+};
 </script>
 
 <style lang="less" scoped>

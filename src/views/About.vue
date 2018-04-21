@@ -5,18 +5,12 @@
 </template>
 
 <script>
-
 export default {
   name: "About",
-  created: function() {
-
-  },
-  components: {
-  }
+  created: function() {},
+  components: {}
 };
-
 </script>
 
 <style lang="less" scoped>
-
 </style>

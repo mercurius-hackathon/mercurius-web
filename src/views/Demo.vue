@@ -6,39 +6,38 @@
 <template>
   <div class="demo">
     <div class="areachart">
+      <!-- 数据 -->
       <area-chart class="echarts-price" ref="priceChart"></area-chart>
     </div>
   </div>
 </template>
 
 <script>
-import AreaChart from '../components/AreaChart';
+import AreaChart from "../components/AreaChart";
 
 export default {
-  name: 'Demo',
+  name: "Demo",
   computed: {},
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
-  created () {},
+  created() {},
   methods: {},
   watch: {},
   components: {
     AreaChart
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
-  .areachart {
-    width: 100%;
-  }
+.areachart {
+  width: 100%;
+}
 
-    // Echarts样式
-  .echarts-price,
-  .echarts-treemap {
-    width: 100%;
-  }
-
+// Echarts样式
+.echarts-price,
+.echarts-treemap {
+  width: 100%;
+}
 </style>
