@@ -187,8 +187,7 @@ export default {
     // 监听窗口大小变化
     this.chartOptions = this.$_.merge(commonOptions, lightThemeOptions);
   },
-  methods: {
-  },
+  methods: {},
   data: function() {
     return {
       // 图表配置

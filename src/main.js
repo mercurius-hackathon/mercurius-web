@@ -13,6 +13,7 @@ import "echarts/lib/component/tooltip";
 import "echarts/lib/component/legend";
 import "echarts/lib/chart/line";
 import "echarts/lib/component/dataZoom";
+import "echarts/lib/chart/candlestick";
 // Element
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";

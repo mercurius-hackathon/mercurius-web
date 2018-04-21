@@ -14,6 +14,10 @@
       <multi-line-chart class="echarts"></multi-line-chart>
     </div>
 
+    <div class="mutillinechart">
+      <candlestick class="echarts"></candlestick>
+    </div>
+
     <div class="gridtable">
       <grid-table
         :selection="TABLECONFIG.selection"
@@ -29,6 +33,7 @@
 <script>
 import AreaChart from "../components/AreaChart";
 import MultiLineChart from "../components/MultiLineChart";
+import Candlestick from "../components/Candlestick";
 import GridTable from "../components/GridTable";
 
 const TABLECONFIG = {
@@ -97,7 +102,8 @@ export default {
   components: {
     AreaChart,
     MultiLineChart,
-    GridTable
+    GridTable,
+    Candlestick
   }
 };
 </script>
