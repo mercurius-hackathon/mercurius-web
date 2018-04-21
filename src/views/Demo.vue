@@ -14,12 +14,16 @@
       <multi-line-chart class="echarts"></multi-line-chart>
     </div>
 
+    <div class="gridtable">
+      <grid-table></grid-table>
+    </div>
   </div>
 </template>
 
 <script>
 import AreaChart from "../components/AreaChart";
 import MultiLineChart from "../components/MultiLineChart";
+import GridTable from "../components/GridTable";
 
 export default {
   name: "Demo",
@@ -32,7 +36,8 @@ export default {
   watch: {},
   components: {
     AreaChart,
-    MultiLineChart
+    MultiLineChart,
+    GridTable
   }
 };
 </script>

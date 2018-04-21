@@ -30,7 +30,9 @@ export default {
         {
           type: "inside",
           start: 0,
-          end: 10
+          end: 10,
+          // 按住 ctrl 和鼠标滚轮能触发缩放。
+          zoomOnMouseWheel: "ctrl"
         },
         {
           start: 0,
