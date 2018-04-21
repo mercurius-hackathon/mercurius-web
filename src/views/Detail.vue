@@ -33,16 +33,6 @@
 
         <el-col :span="12" class="el-col">
           <el-tabs type="border-card">
-            <el-tab-pane label="Status">
-              <div class="status-wrapper">
-                <p> Time: 2018-04-21 17:45:59 </p>
-                <p> DeepTimes:1264139 </p>
-                <p> P: 17.182</p>
-                <p> M: 14.158</p>
-                <p>2.5: P_COUNT: 5 M_COUNT: 3</p>
-                <p>[{"MarginLevel":10,"Amount":2024,"FrozenAmount":0,"Price":606.1285,"Profit":0.478648,"Type":0,"ContractType":"this_week"},{"MarginLevel":10,"Amount":2024,"FrozenAmount":0,"Price":618.7885,"Profit":-0.595328,"Type":1,"ContractType":"quarter"}]</p>
-              </div>
-            </el-tab-pane>
             <el-tab-pane label="Logs">
               <div class="log-contents">
                 <div class="log">
@@ -62,6 +52,16 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="Status">
+              <div class="status-wrapper">
+                <p> Time: 2018-04-21 17:45:59 </p>
+                <p> DeepTimes:1264139 </p>
+                <p> P: 17.182</p>
+                <p> M: 14.158</p>
+                <p>2.5: P_COUNT: 5 M_COUNT: 3</p>
+                <p>[{"MarginLevel":10,"Amount":2024,"FrozenAmount":0,"Price":606.1285,"Profit":0.478648,"Type":0,"ContractType":"this_week"},{"MarginLevel":10,"Amount":2024,"FrozenAmount":0,"Price":618.7885,"Profit":-0.595328,"Type":1,"ContractType":"quarter"}]</p>
               </div>
             </el-tab-pane>
           </el-tabs>
