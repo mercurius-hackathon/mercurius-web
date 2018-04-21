@@ -4,7 +4,7 @@
   <el-table
     :data="tableData"
     @selection-change="handleSelectionChange"
-    highlight-current-row
+    show-overflow-tooltip
     stripe
     border>
     <!-- 可选择 -->
@@ -35,7 +35,6 @@
           <el-button v-if="operation.name === 'placeholder'" size="mini" :key="scope.row.id" style="display: none"> </el-button>
           <el-button
             v-if="!operation.name"
-            v-has="operation.perms"
             size="mini"
             :type="operation.type"
             :key="scope.row.id"
