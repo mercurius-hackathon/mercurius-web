@@ -172,7 +172,7 @@ const commonOptions = {
   /** 数据 */
   series: [
     {
-      name: "模拟数据",
+      name: "Data",
       type: "line",
       smooth: true,
       showSymbol: false,

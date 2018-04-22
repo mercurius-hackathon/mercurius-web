@@ -2,7 +2,7 @@ import axios from "axios";
 
 // axios 配置
 axios.defaults.timeout = 30000; // 超时时间 30s
-axios.defaults.baseURL = "http://192.168.74.86:5000"; // 基本URL
+axios.defaults.baseURL = "/"; // 基本URL
 
 axios.interceptors.request.use(
   // Do something before request is sent

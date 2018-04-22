@@ -14,13 +14,14 @@
           <el-option label="Huobi" value="huobi"></el-option>
         </el-select>
         <!-- instrument -->
-        <el-select v-model="instrument" placeholder="instrument" style="width: 120px; ">
+        <el-select v-model="instrument" placeholder="instrument" multiple filterable default-first-option style="width: 400px; ">
           <el-option label="ETH/BTC" value="ETH/BTC"></el-option>
           <el-option label="XMR/BTC" value="XMR/BTC"></el-option>
           <el-option label="STR/BTC" value="STR/BTC"></el-option>
           <el-option label="OMG/BTC" value="OMG/BTC"></el-option>
           <el-option label="LSK/BTC" value="LSK/BTC"></el-option>
         </el-select>
+        <br>
         <!-- period -->
         <el-select v-model="period" placeholder="period" style="width: 120px;">
           <el-option label="1m" value="1m"></el-option>
@@ -92,28 +93,28 @@
 
         <el-col :span="10" class="el-col">
           <el-tabs type="border-card">
-            <el-tab-pane label="Logs">
+            <el-tab-pane label="Logs" style="min-height: 150px;">
               <div class="log-contents">
                 <div class="log">
                   <div class="scroll-log">
                     <!-- loop content -->
                     <div class="level1">
-                      <span class="time">2018-02-28 10:30</span>
+                      <span class="time">2018-04-22 10:30</span>
                       <span class="message">Profit: 18.1734% (15.9673% over B&H)</span>
                     </div>
                     <div class="level2">
-                      <span class="time">2018-02-28 10:30</span>
+                      <span class="time">2018-04-22 10:30</span>
                       <span class="message">Stop detected.</span>
                     </div>
                     <div class="level0">
-                      <span class="time">2018-02-28 10:30</span>
+                      <span class="time">2018-04-22 10:30</span>
                       <span class="message">Profit: 18.1734% (15.9673% over B&H)</span>
                     </div>
                   </div>
                 </div>
               </div>
             </el-tab-pane>
-            <el-tab-pane label="Status">
+            <el-tab-pane label="Status" style="min-height: 150px;">
               <div class="status-wrapper">
                 <p> Time: 2018-04-21 17:45:59 </p>
                 <p> DeepTimes:1264139 </p>
@@ -182,14 +183,14 @@ const TABLECONFIG2 = {
 }
 
 export default {
-  name: "Demo",
+  name: "Detail",
   computed: {},
   data() {
     return {
       market: 'poloniex',
-      instrument: 'ETH/BTC',
+      instrument: ['ETH/BTC'],
       period: '1m',
-      times: [new Date() - 3600 * 1000 * 24, new Date()],
+      times: [new Date(new Date() - 3600 * 1000 * 24), new Date()],
       start_time: null,
       end_time: null,
       TABLECONFIG,
@@ -198,12 +199,39 @@ export default {
   },
   created() {
     // TODO: confirm why it donen't work
-    http.get('/uploadAlgo').then(res => {
+    http.post('/api/uploadAlgo', {
+      exchange: this.market,
+      timeframe: this.period,
+      symbols: this.instrument,
+      start_time: this.start_time,
+      end_time: this.end_time
+    }).then(res => {
       console.log('res', res);
     });
   },
   methods: {},
-  watch: {},
+  watch: {
+    market: function(val, oldVal) {
+      http.post('/api/uploadAlgo', {
+        exchange: this.market,
+        timeframe: this.period,
+        symbols: this.instrument,
+        start_time: this.start_time,
+        end_time: this.end_time
+      }).then(res => {
+        console.log('res', res);
+      });
+    },
+    instrument: function(val, oldVal) {
+      console.log('val', val);
+    },
+    period: function(val, oldVal) {
+      console.log('val', val);
+    },
+    times: function(val, oldVal) {
+      console.log('haha', val);
+    }
+  },
   components: {
     AreaChart,
     MultiLineChart,

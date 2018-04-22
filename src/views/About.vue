@@ -1,6 +1,8 @@
 <template>
   <div class="about">
-    <h1>this is a simple page</h1>
+    <router-link to="detail">
+      <img src="../assets/mercurius-logo.png">
+    </router-link>
   </div>
 </template>
 
@@ -13,4 +15,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.about {
+  height: 80vh;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  img {}
+}
 </style>
