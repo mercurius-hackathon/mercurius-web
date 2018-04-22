@@ -135,6 +135,10 @@ import GridTable from "../components/GridTable";
 import Candlestick from "../components/Candlestick";
 import http from "../service";
 import moment from "moment";
+// const tableData = [{
+//   averagevv: 1000463
+
+// }]
 const TABLECONFIG = {
   selection: false,
   columns: [

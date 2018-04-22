@@ -4,37 +4,35 @@
 * @Created: 2018-04-21 15:28
 */
 <template>
-  <div>
+  <div style="padding:0 30px 30px;">
     <grid-table
       :selection="TABLECONFIG.selection"
       :columns="TABLECONFIG.columns"
       :operations="TABLECONFIG.operations"
       :tableData="tableData"
+      @edit="handleJump"
     ></grid-table>
   </div>
 </template>
 
 <script>
 import GridTable from "../components/GridTable";
+import moment from "moment";
 const TABLECONFIG = {
   selection: false,
   columns: [
     {
-      label: "Robot",
+      label: "Algorithm",
       dataIndex: "name"
     },
     {
-      label: "Strategy",
-      dataIndex: "strategy"
+      label: "Risk",
+      dataIndex: "risk"
     },
     {
       label: "Profit",
       dataIndex: "profit",
       sortable: true
-    },
-    {
-      label: "Member",
-      dataIndex: "member"
     },
     {
       label: "Created",
@@ -45,7 +43,8 @@ const TABLECONFIG = {
   operations: [
     {
       label: "View",
-      type: "success"
+      type: "success",
+      eventType: 'edit',
     }
   ]
 };
@@ -56,28 +55,31 @@ export default {
   data() {
     return {
       TABLECONFIG,
-      // TODO: remove this mock
-      tableData: [
-        {
-          name:
-            "币安1249947802 BTC 币安1249947802 BTC 币安1249947802 BTC 币安1249947802 BTC",
-          strategy: "币安山寨币轮动ETF",
-          profit: 0.5558,
-          member: "newblock",
-          created: "2018-04-21 09:27:50"
-        },
-        {
-          name: "币安1249947802 BTC",
-          strategy: "币安山寨币轮动ETF",
-          profit: 10.5558,
-          member: "newblock",
-          created: "2018-04-21 09:27:50"
-        }
-      ]
+      tableData: []
     };
   },
-  created() {},
-  methods: {},
+  created() {
+    var risk_arr = ['height', 'low', 'medium']
+    var strategyArray = ['ubah', 'best', 'crp', 'bcrp', 'up', 'eg', 'ons', 'anticor1', 'anticor2', 'pamr', 'cwmr_var', 'cwmr_std', 'olmar2', 'bk', 'bnn', 'cornk', 'm0', 'rmr', 'sp', 'wmamr'];
+    strategyArray.forEach(item => {
+      this.tableData.push({
+        name: item,
+        profit: Math.random() * 3 + 1,
+        // Math.floor(Math.random() * 3 )
+        risk: risk_arr[Math.floor(Math.random() * 3)],
+        created: moment(new Date(new Date() - 3600 * 1000 * 24)).format(
+        "YYYY-MM-DD HH:MM:mm"
+      ),
+      });
+    });
+  },
+  methods: {
+    handleJump: function () {
+      this.$router.push({
+        name: 'detail'
+      })
+    }
+  },
   watch: {},
   components: {
     GridTable
