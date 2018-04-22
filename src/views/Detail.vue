@@ -24,14 +24,11 @@
         <br>
         <!-- period -->
         <el-select v-model="period" placeholder="period" style="width: 120px;">
-          <el-option label="1m" value="1m"></el-option>
           <el-option label="5m" value="5m"></el-option>
           <el-option label="15m" value="15m"></el-option>
           <el-option label="30m" value="30m"></el-option>
-          <el-option label="1h" value="1h"></el-option>
           <el-option label="2h" value="2h"></el-option>
           <el-option label="4h" value="4h"></el-option>
-          <el-option label="8h" value="8h"></el-option>
           <el-option label="1d" value="1d"></el-option>
         </el-select>
         <!-- time -->
@@ -138,6 +135,7 @@ import MultiLineChart from "../components/MultiLineChart";
 import GridTable from "../components/GridTable";
 import Candlestick from "../components/Candlestick";
 import http from "../service";
+import moment from "moment";
 const TABLECONFIG = {
   selection: false,
   columns: [{
@@ -189,29 +187,19 @@ export default {
     return {
       market: 'poloniex',
       instrument: ['ETH/BTC'],
-      period: '1m',
+      period: '15m',
       times: [new Date(new Date() - 3600 * 1000 * 24), new Date()],
-      start_time: null,
-      end_time: null,
+      start_time: moment(new Date(new Date() - 3600 * 1000 * 24)).format('YYYY-MM-DD HH:MM:mm'),
+      end_time: moment(new Date()).format('YYYY-MM-DD HH:MM:mm'),
       TABLECONFIG,
       TABLECONFIG2
     };
   },
   created() {
-    // TODO: confirm why it donen't work
-    http.post('/api/uploadAlgo', {
-      exchange: this.market,
-      timeframe: this.period,
-      symbols: this.instrument,
-      start_time: this.start_time,
-      end_time: this.end_time
-    }).then(res => {
-      console.log('res', res);
-    });
+    this.uploadAlgo();
   },
-  methods: {},
-  watch: {
-    market: function(val, oldVal) {
+  methods: {
+    uploadAlgo: function () {
       http.post('/api/uploadAlgo', {
         exchange: this.market,
         timeframe: this.period,
@@ -221,15 +209,21 @@ export default {
       }).then(res => {
         console.log('res', res);
       });
+    }
+  },
+  watch: {
+    market: function(val, oldVal) {
+      this.uploadAlgo();
     },
     instrument: function(val, oldVal) {
-      console.log('val', val);
+      this.uploadAlgo();
     },
     period: function(val, oldVal) {
-      console.log('val', val);
+      this.uploadAlgo();
     },
     times: function(val, oldVal) {
-      console.log('haha', val);
+      this.start_time = moment(this.val[0]).format('YYYY-MM-DD HH:MM:mm');
+      this.end_time = moment(this.val[1]).format('YYYY-MM-DD HH:MM:mm');
     }
   },
   components: {
