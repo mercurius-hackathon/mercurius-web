@@ -27,20 +27,20 @@ const lightThemeOptions = {
     axisPointer: {
       snap: true,
       lineStyle: {
-        color: '#fff',
+        color: "#fff",
         opacity: 0.5,
         width: 2
       }
     },
     axisLabel: {
-      color: '#fff'
+      color: "#fff"
     },
     splitArea: {
       // 区域分割颜色
       // NOTE: 因为数据太密集，所以不显示区域分割的颜色
       show: false,
       areaStyle: {
-        color: ['#2C343A', '#fff'],
+        color: ["#2C343A", "#fff"],
         opacity: 0.02
       }
     }
@@ -48,25 +48,29 @@ const lightThemeOptions = {
   yAxis: {
     splitLine: {
       lineStyle: {
-        color: '#384046'
+        color: "#384046"
       }
     }
   },
-  series: [{
+  series: [
+    {
       itemStyle: {
         normal: {
-          color: '#fff'
+          color: "#fff"
         }
       },
       areaStyle: {
         normal: {
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-            offset: .45,
-            color: 'rgba(11, 35, 56, 0.70)'
-          }, {
-            offset: 1,
-            color: 'rgba(43,50,56,0.30)'
-          }])
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0.45,
+              color: "rgba(11, 35, 56, 0.70)"
+            },
+            {
+              offset: 1,
+              color: "rgba(43,50,56,0.30)"
+            }
+          ])
         }
       }
     }

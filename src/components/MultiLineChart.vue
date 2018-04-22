@@ -133,8 +133,7 @@ export default {
       ]
     };
   },
-  methods: {
-  },
+  methods: {},
   data: function() {
     return {
       // 图表配置

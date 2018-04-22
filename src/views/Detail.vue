@@ -129,7 +129,6 @@
 </template>
 
 <script>
-
 import AreaChart from "../components/AreaChart";
 import MultiLineChart from "../components/MultiLineChart";
 import GridTable from "../components/GridTable";
@@ -138,59 +137,74 @@ import http from "../service";
 import moment from "moment";
 const TABLECONFIG = {
   selection: false,
-  columns: [{
-    label: "average",
-    dataIndex: "average"
-  }, {
-    label: "portfolio value",
-    dataIndex: "portfolio_value"
-  }, {
-    label: "max drawdown",
-    dataIndex: "max_drawdown"
-  }, {
-    label: "sharpe ratio",
-    dataIndex: "sharpe_ratio",
-  }, {
-    label: "sortino ratio",
-    dataIndex: "sortino_ratio",
-  }],
+  columns: [
+    {
+      label: "average",
+      dataIndex: "average"
+    },
+    {
+      label: "portfolio value",
+      dataIndex: "portfolio_value"
+    },
+    {
+      label: "max drawdown",
+      dataIndex: "max_drawdown"
+    },
+    {
+      label: "sharpe ratio",
+      dataIndex: "sharpe_ratio"
+    },
+    {
+      label: "sortino ratio",
+      dataIndex: "sortino_ratio"
+    }
+  ],
   operations: []
-}
+};
 const TABLECONFIG2 = {
   selection: false,
-  columns: [{
-    label: "negative day",
-    dataIndex: "negative_day"
-  }, {
-    label: "negative periods",
-    dataIndex: "negative_periods"
-  }, {
-    label: "negative week",
-    dataIndex: "negative_week"
-  }, {
-    label: "positive periods",
-    dataIndex: "positive_periods",
-  }, {
-    label: "postive day",
-    dataIndex: "postive_day",
-  }, {
-    label: "postive week",
-    dataIndex: "postive_week"
-  }],
+  columns: [
+    {
+      label: "negative day",
+      dataIndex: "negative_day"
+    },
+    {
+      label: "negative periods",
+      dataIndex: "negative_periods"
+    },
+    {
+      label: "negative week",
+      dataIndex: "negative_week"
+    },
+    {
+      label: "positive periods",
+      dataIndex: "positive_periods"
+    },
+    {
+      label: "postive day",
+      dataIndex: "postive_day"
+    },
+    {
+      label: "postive week",
+      dataIndex: "postive_week"
+    }
+  ],
   operations: []
-}
+};
 
 export default {
   name: "Detail",
   computed: {},
   data() {
     return {
-      market: 'poloniex',
-      instrument: ['ETH/BTC'],
-      period: '15m',
+      market: "poloniex",
+      instrument: ["ETH/BTC"],
+      period: "15m",
       times: [new Date(new Date() - 3600 * 1000 * 24), new Date()],
-      start_time: moment(new Date(new Date() - 3600 * 1000 * 24)).format('YYYY-MM-DD HH:MM:mm'),
-      end_time: moment(new Date()).format('YYYY-MM-DD HH:MM:mm'),
+      start_time: moment(new Date(new Date() - 3600 * 1000 * 24)).format(
+        "YYYY-MM-DD HH:MM:mm"
+      ),
+      end_time: moment(new Date()).format("YYYY-MM-DD HH:MM:mm"),
       TABLECONFIG,
       TABLECONFIG2
     };
@@ -199,16 +213,18 @@ export default {
     this.uploadAlgo();
   },
   methods: {
-    uploadAlgo: function () {
-      http.post('/api/uploadAlgo', {
-        exchange: this.market,
-        timeframe: this.period,
-        symbols: this.instrument,
-        start_time: this.start_time,
-        end_time: this.end_time
-      }).then(res => {
-        console.log('res', res);
-      });
+    uploadAlgo: function() {
+      http
+        .post("/api/uploadAlgo", {
+          exchange: this.market,
+          timeframe: this.period,
+          symbols: this.instrument,
+          start_time: this.start_time,
+          end_time: this.end_time
+        })
+        .then(res => {
+          console.log("res", res);
+        });
     }
   },
   watch: {
@@ -222,8 +238,8 @@ export default {
       this.uploadAlgo();
     },
     times: function(val, oldVal) {
-      this.start_time = moment(this.val[0]).format('YYYY-MM-DD HH:MM:mm');
-      this.end_time = moment(this.val[1]).format('YYYY-MM-DD HH:MM:mm');
+      this.start_time = moment(this.val[0]).format("YYYY-MM-DD HH:MM:mm");
+      this.end_time = moment(this.val[1]).format("YYYY-MM-DD HH:MM:mm");
     }
   },
   components: {
@@ -236,7 +252,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url('../themes.less');
+@import url("../themes.less");
 .areachart {
   width: 100%;
 }
@@ -245,7 +261,7 @@ export default {
 .echarts {
   width: 100%;
 }
-.status-wrapper  {
+.status-wrapper {
   word-break: break-all;
   font-size: 12px;
   text-align: left;
@@ -298,7 +314,7 @@ export default {
 }
 .select-params {
   text-align: left;
-  &>* {
+  & > * {
     margin: 10px 10px;
   }
 }

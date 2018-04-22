@@ -1,6 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
 import About from "./views/About.vue";
+const Live = resolve => {
+  import("./views/Live.vue").then(module => {
+    resolve(module);
+  });
+};
 // 异步模块
 const Demo = resolve => {
   import("./views/Demo.vue").then(module => {
@@ -25,6 +30,11 @@ export default new Router({
       path: "/",
       name: "about",
       component: About
+    },
+    {
+      path: "/live",
+      name: "live",
+      component: Live
     },
     {
       path: "/detail",

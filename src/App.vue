@@ -2,6 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">HOME</router-link> |
+      <router-link to="/live">Robots Lives</router-link> |
       <router-link to="/detail">Robots detail</router-link>
     </div>
     <transition name="myfade" mode="out-in">
@@ -13,12 +14,12 @@
 </template>
 
 <style lang="less">
-@import './themes.less';
+@import "./themes.less";
 html {
   min-height: 100vh;
   background-size: cover;
   background-position: center;
-  background-image: url('./assets/background.jpeg');
+  background-image: url("./assets/background.jpeg");
   background-repeat: no-repeat;
   min-width: 440px;
 }
@@ -40,25 +41,29 @@ html {
   }
 }
 
-.myfade-enter-active, .myfade-leave-active {
+.myfade-enter-active,
+.myfade-leave-active {
   transition: opacity 0.2s;
 }
-.myfade-enter, .myfade-leave-active {
+.myfade-enter,
+.myfade-leave-active {
   opacity: 0;
 }
 // black theme
 .el-tabs--border-card,
-.el-tabs--border-card>.el-tabs__header {
+.el-tabs--border-card > .el-tabs__header {
   background-color: rgba(255, 255, 255, 0.07);
   border: none;
 }
-.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+.el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
   background-color: rgba(255, 255, 255, 0.25);
 }
-.el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover {
+.el-tabs--border-card
+  > .el-tabs__header
+  .el-tabs__item:not(.is-disabled):hover {
   color: #e0e0e0;
 }
-.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+.el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
   color: #fff;
 }
 .el-tabs--border-card > .el-tabs__header .el-tabs__item {
