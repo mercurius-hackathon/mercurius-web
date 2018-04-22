@@ -25,10 +25,10 @@ const TABLECONFIG = {
       label: "Algorithm",
       dataIndex: "name"
     },
-    {
-      label: "Risk",
-      dataIndex: "risk"
-    },
+    // {
+    //   label: "Risk",
+    //   dataIndex: "risk"
+    // },
     {
       label: "Profit",
       dataIndex: "profit",
@@ -37,6 +37,11 @@ const TABLECONFIG = {
     {
       label: "Created",
       dataIndex: "created",
+      sortable: true
+    },
+    {
+      label: "Category",
+      dataIndex: "category",
       sortable: true
     }
   ],
@@ -59,7 +64,8 @@ export default {
     };
   },
   created() {
-    var risk_arr = ['height', 'low', 'medium']
+    var risk_arr = ['low', 'low', 'low']
+    var c_arr = ['Follow the winner', 'Follow the loser', 'Mean Reversion', 'others']
     var strategyArray = ['ubah', 'best', 'crp', 'bcrp', 'up', 'eg', 'ons', 'anticor1', 'anticor2', 'pamr', 'cwmr_var', 'cwmr_std', 'olmar2', 'bk', 'bnn', 'cornk', 'm0', 'rmr', 'sp', 'wmamr'];
     strategyArray.forEach(item => {
       this.tableData.push({
@@ -67,7 +73,8 @@ export default {
         profit: Math.random() * 3 + 1,
         // Math.floor(Math.random() * 3 )
         risk: risk_arr[Math.floor(Math.random() * 3)],
-        created: moment(new Date(new Date() - 3600 * 1000 * 24)).format(
+        category: c_arr[(Math.floor(Math.random() * 4))],
+        created: moment(new Date(new Date() - 3600 * 1000 * Math.random() * 100 * 24)).format(
         "YYYY-MM-DD HH:MM:mm"
       ),
       });

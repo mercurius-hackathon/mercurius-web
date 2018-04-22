@@ -50,7 +50,7 @@
                 <area-chart class="echarts"></area-chart>
               </div>
             </el-tab-pane>
-            <el-tab-pane label="Strategy chart">
+            <el-tab-pane label="ETH/BTC price chart">
               <div class="mutillinechart">
                 <!-- <multi-line-chart class="echarts"></multi-line-chart> -->
                 <candlestick class="echarts"></candlestick>

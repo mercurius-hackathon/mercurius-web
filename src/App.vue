@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/">HOME</router-link> |
       <router-link to="/live">Robots Lives</router-link> |
-      <router-link to="/detail">Robots detail</router-link>
+      <router-link to="/detail">Robots Detail</router-link>
     </div>
     <transition name="myfade" mode="out-in">
       <keep-alive>
